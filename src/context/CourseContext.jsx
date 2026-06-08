@@ -1,41 +1,62 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState, useEffect, useCallback } from "react";
+import coursesData from "../data/courses";
 
-export const CourseContext = createContext();
+const CourseContext = createContext();
 
 export function CourseProvider({ children }) {
+  const [enrolledIds, setEnrolledIds] = useState(() => {
+    const saved = localStorage.getItem("enrolledCourses");
+    return saved ? JSON.parse(saved) : [];
+  });
 
-    const [selectedCourses, setSelectedCourses] = useState([]);
+  useEffect(() => {
+    localStorage.setItem("enrolledCourses", JSON.stringify(enrolledIds));
+  }, [enrolledIds]);
 
-    const addCourse = (course) => {
-    setSelectedCourses((prev) => {
-
-        const exists = prev.some(
-        c => c.id === course.id
-        );
-
-        if (exists) {
-        return prev;
-        }
-
-        return [...prev, course];
+  const addCourse = useCallback((courseId) => {
+    setEnrolledIds((prev) => {
+      if (prev.includes(courseId)) return prev;
+      return [...prev, courseId];
     });
-};
+  }, []);
 
-    const removeCourse = (id) => {
-        setSelectedCourses((prev) =>
-        prev.filter(course => course.id !== id)
-        );
-    };
+  const removeCourse = useCallback((courseId) => {
+    setEnrolledIds((prev) => prev.filter((id) => id !== courseId));
+  }, []);
 
-    return (
-        <CourseContext.Provider
-        value={{
-            selectedCourses,
-            addCourse,
-            removeCourse
-        }}
-        >
-        {children}
-        </CourseContext.Provider>
-    );
+  const isEnrolled = useCallback((courseId) => {
+    return enrolledIds.includes(courseId);
+  }, [enrolledIds]);
+
+  const enrolledCourses = coursesData.filter((course) =>
+    enrolledIds.includes(course.id)
+  );
+
+  const totalCredits = enrolledCourses.reduce(
+    (sum, course) => sum + course.credits,
+    0
+  );
+
+  const value = {
+    enrolledIds,
+    enrolledCourses,
+    totalCredits,
+    addCourse,
+    removeCourse,
+    isEnrolled,
+  };
+
+  return (
+    <CourseContext.Provider value={value}>{children}</CourseContext.Provider>
+  );
 }
+
+export function useCourses() {
+  const context = useContext(CourseContext);
+  if (!context) {
+    throw new Error("useCourses debe usarse dentro de un CourseProvider");
+  }
+  return context;
+}
+
+export default CourseContext;
