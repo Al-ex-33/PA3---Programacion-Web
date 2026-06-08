@@ -112,7 +112,11 @@ Esto permite que cualquier componente pueda acceder y modificar la selección si
 
 | Integrante | Rol / Aporte |
 |------------|-------------|
-| Christopher Cano | Desarrollo frontend completo |
+| Mario Yonatan Haro Agreda | Desarrollo frontend |
+| Karlo Andre Vergara Caballero | Desarrollo frontend |
+| Alexis Chagua Cueva | Desarrollo frontend |
+| Erick Borda Roman | Desarrollo frontend |
+| Christopher Lenin Cano Romero | Desarrollo frontend |
 
 ## 📹 Link de Exposición en YouTube
 
