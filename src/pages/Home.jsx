@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useCourses } from "../context/CourseContext";
 import Button from "../components/Button";
+import './Home.css';
 
 function Home() {
   const { enrolledIds, totalCredits } = useCourses();

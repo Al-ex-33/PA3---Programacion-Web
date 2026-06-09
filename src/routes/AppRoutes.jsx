@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -20,48 +22,50 @@ function Layout({ children }) {
 
 function AppRoutes() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Layout>
-            <Home />
-          </Layout>
-        }
-      />
-      <Route
-        path="/courses"
-        element={
-          <Layout>
-            <Courses />
-          </Layout>
-        }
-      />
-      <Route
-        path="/course/:id"
-        element={
-          <Layout>
-            <CourseDetail />
-          </Layout>
-        }
-      />
-      <Route
-        path="/mycourses"
-        element={
-          <Layout>
-            <MyCourses />
-          </Layout>
-        }
-      />
-      <Route
-        path="*"
-        element={
-          <Layout>
-            <NotFound />
-          </Layout>
-        }
-      />
-    </Routes>
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <Home />
+            </Layout>
+          }
+        />
+        <Route
+          path="/courses"
+          element={
+            <Layout>
+              <Courses />
+            </Layout>
+          }
+        />
+        <Route
+          path="/course/:id"
+          element={
+            <Layout>
+              <CourseDetail />
+            </Layout>
+          }
+        />
+        <Route
+          path="/mycourses"
+          element={
+            <Layout>
+              <MyCourses />
+            </Layout>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <Layout>
+              <NotFound />
+            </Layout>
+          }
+        />
+      </Routes>
+    </>
   );
 }
 

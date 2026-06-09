@@ -4,21 +4,28 @@ import CourseList from "../components/CourseList";
 
 function Courses() {
   const [filter, setFilter] = useState("Todos");
+  const [levelFilter, setLevelFilter] = useState("Todos");
   const [search, setSearch] = useState("");
 
   const categories = [
     "Todos",
     ...new Set(coursesData.map((c) => c.category)),
   ];
+  const levels = [
+    "Todos",
+    ...new Set(coursesData.map((c) => c.level))
+  ];
 
   const filteredCourses = coursesData.filter((course) => {
     const matchCategory =
       filter === "Todos" || course.category === filter;
+    const matchLevel =
+      levelFilter === "Todos" || course.level === levelFilter;
     const matchSearch =
       search.trim() === "" ||
       course.title.toLowerCase().includes(search.toLowerCase()) ||
       course.instructor.toLowerCase().includes(search.toLowerCase());
-    return matchCategory && matchSearch;
+    return matchCategory && matchLevel && matchSearch;
   });
 
   return (
@@ -59,6 +66,20 @@ function Courses() {
               onClick={() => setFilter(cat)}
             >
               {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* filtrado por niveles */}
+        <div className="filter-tabs"> 
+          {levels.map((lvl) => (
+            <button
+              key={lvl}
+              className={`filter-tab ${levelFilter === lvl ? "filter-tab-active" : ""}`}
+              onClick={() => setLevelFilter(lvl)}
+              //onClick={() => { setFilter(cat); setLevelFilter("Todos"); }}
+            >
+              {lvl}
             </button>
           ))}
         </div>

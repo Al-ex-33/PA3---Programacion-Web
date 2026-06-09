@@ -9,10 +9,8 @@ import { CourseProvider } from './context/CourseContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <CourseProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </CourseProvider>
   </React.StrictMode>
 );
