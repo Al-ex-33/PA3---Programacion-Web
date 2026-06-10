@@ -87,6 +87,17 @@ const courses = [
     level: "Intermedio",
     image: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=250&fit=crop",
   },
+  {
+    id: 9,
+    title: "Python / Django",
+    description: "Desarrollo backend usando el lenguaje de programación Python con el framework Django",
+    instructor: "Ing. Alexandra Becerra",
+    credits: 4,
+    schedule: "Lunes y Miércoles 10:00 - 12:00",
+    category: "Tecnología",
+    level: "Avanzado",
+    image: "https://images.unsplash.com/photo-1649180556628-9ba704115795?q=80&w=1162&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
 ];
 
 export default courses;
