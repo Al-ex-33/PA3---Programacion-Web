@@ -110,18 +110,28 @@ Esto permite que cualquier componente pueda acceder y modificar la selección si
 
 ## 👥 Integrantes
 
-| Integrante | Rol / Aporte |
-|------------|-------------|
-| Mario Yonatan Haro Agreda | Desarrollo frontend |
+| Integrante                    | Rol / Aporte        |
+| ----------------------------- | ------------------- |
+| Mario Yonatan Haro Agreda     | Desarrollo frontend |
 | Karlo Andre Vergara Caballero | Desarrollo frontend |
-| Alexis Chagua Cueva | Desarrollo frontend |
-| Erick Borda Roman | Desarrollo frontend |
-| Christopher Lenin Cano Romero | Desarrollo frontend |
-
-## 📹 Link de Exposición en YouTube
-
-[URL del video de sustentación]
+| Alexis Chagua Cueva           | Desarrollo backend  |
+| Erick Borda Roman             | Desarrollo frontend |
+| Christopher Lenin Cano Romero | Desarrollo backend  |
 
 ## 📸 Capturas de Pantalla
 
-*(Agregar capturas de las vistas principales)*
+**/home**!
+![/home](./src/assets/screenshots/screencapture-localhost-5173-2026-06-09-11_05_42.png "/home")
+
+**/courses**
+![/courses](./src/assets/screenshots/screencapture-localhost-5173-courses-2026-06-09-11_06_24.png "/courses")
+
+**/courses/id**
+![/courses/id](./src/assets/screenshots/screencapture-localhost-5173-course-9-2026-06-09-11_06_58-1.png "/courses/id")
+
+**/mycourses**
+![/mycourses](./src/assets/screenshots/screencapture-localhost-5173-mycourses-2026-06-09-11_12_57.png "/mycourses")
+
+## 📹 Link de Exposición en YouTube
+
+[https://youtu.be/qqcUu4xESuk](https://youtu.be/qqcUu4xESuk "link")

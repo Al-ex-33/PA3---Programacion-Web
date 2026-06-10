@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useCourses } from "../context/CourseContext";
 import Button from "../components/Button";
 import './Home.css';
+import courses from "../data/courses";
 
 function Home() {
   const { enrolledIds, totalCredits } = useCourses();
@@ -74,7 +75,7 @@ function Home() {
           <span className="stat-label">Créditos Totales</span>
         </div>
         <div className="stat-card">
-          <span className="stat-number">8</span>
+          <span className="stat-number">{courses.length}</span>
           <span className="stat-label">Cursos Disponibles</span>
         </div>
       </section>

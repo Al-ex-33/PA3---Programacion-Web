@@ -23,7 +23,7 @@ function Courses() {
       levelFilter === "Todos" || course.level === levelFilter;
     const matchSearch =
       search.trim() === "" ||
-      course.title.toLowerCase().includes(search.toLowerCase()) ||
+      course.title.toLowerCase().includes(search.toLowerCase()) || 
       course.instructor.toLowerCase().includes(search.toLowerCase());
     return matchCategory && matchLevel && matchSearch;
   });
