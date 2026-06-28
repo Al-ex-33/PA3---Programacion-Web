@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import ProtectedRoute from "./ProtectedRoute";
 
 import Home from "../pages/Home";
 import Courses from "../pages/Courses";
 import CourseDetail from "../pages/CourseDetail";
 import MyCourses from "../pages/MyCourses";
+import Login from "../pages/Login";
 import NotFound from "../pages/NotFound";
 
 function Layout({ children }) {
@@ -22,50 +22,26 @@ function Layout({ children }) {
 
 function AppRoutes() {
   return (
-    <>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Layout>
-              <Home />
-            </Layout>
-          }
-        />
-        <Route
-          path="/courses"
-          element={
-            <Layout>
-              <Courses />
-            </Layout>
-          }
-        />
-        <Route
-          path="/course/:id"
-          element={
-            <Layout>
-              <CourseDetail />
-            </Layout>
-          }
-        />
-        <Route
-          path="/mycourses"
-          element={
-            <Layout>
+    <Routes>
+      {/* Ruta pública: Login */}
+      <Route path="/login" element={<Login />} />
+
+      {/* Rutas protegidas con Layout */}
+      <Route path="/" element={<Layout><Home /></Layout>} />
+      <Route path="/courses" element={<Layout><Courses /></Layout>} />
+      <Route path="/course/:id" element={<Layout><CourseDetail /></Layout>} />
+      <Route
+        path="/mycourses"
+        element={
+          <Layout>
+            <ProtectedRoute>
               <MyCourses />
-            </Layout>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <Layout>
-              <NotFound />
-            </Layout>
-          }
-        />
-      </Routes>
-    </>
+            </ProtectedRoute>
+          </Layout>
+        }
+      />
+      <Route path="*" element={<Layout><NotFound /></Layout>} />
+    </Routes>
   );
 }
 

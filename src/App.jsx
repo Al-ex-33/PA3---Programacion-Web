@@ -1,11 +1,14 @@
+import { AuthProvider } from "./context/AuthContext";
 import { CourseProvider } from "./context/CourseContext";
 import AppRoutes from "./routes/AppRoutes";
 
 function App() {
   return (
-    <CourseProvider>
-      <AppRoutes />
-    </CourseProvider>
+    <AuthProvider>
+      <CourseProvider>
+        <AppRoutes />
+      </CourseProvider>
+    </AuthProvider>
   );
 }
 
