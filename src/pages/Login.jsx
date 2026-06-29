@@ -65,6 +65,9 @@ function Login() {
           <Button type="submit" variant="primary" size="lg" disabled={loading} className="login-btn">
             {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
           </Button>
+          <Button to="/" variant="secondary" size="lg">
+            Volver
+          </Button>
 
           <p className="login-hint">
             Demo: estudiante@isil.pe / 123456
