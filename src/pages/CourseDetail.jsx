@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import coursesData from "../data/courses";
+import { useEffect, useState } from "react";
+import api from "../services/api";
 import { useCourses } from "../context/CourseContext";
 import Button from "../components/Button";
 
@@ -9,7 +9,26 @@ function CourseDetail() {
   const navigate = useNavigate();
   const { isEnrolled, addCourse, removeCourse, totalCredits } = useCourses();
 
-  const course = coursesData.find((c) => c.id === Number(id));
+  const [course, setCourse] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchCourse = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const res = await api.get(`/courses/${id}`);
+        setCourse(res.data.course);
+      } catch {
+        setError("Error al cargar el curso");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCourse();
+  }, [id]);
+
   const enrolled = course ? isEnrolled(course.id) : false;
 
   useEffect(() => {
@@ -31,11 +50,19 @@ function CourseDetail() {
     }
   };
 
-  if (!course) {
+  if (loading) {
+    return (
+      <div className="page page-detail">
+        <div className="loading-state">Cargando curso...</div>
+      </div>
+    );
+  }
+
+  if (error || !course) {
     return (
       <div className="page page-detail">
         <div className="not-found-card">
-          <h1>Curso no encontrado</h1>
+          <h1>{error || "Curso no encontrado"}</h1>
           <p>El curso que buscas no existe o ha sido removido.</p>
           <Button to="/courses" variant="primary">
             Volver al Catálogo
