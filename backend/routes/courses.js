@@ -9,6 +9,15 @@ router.get('/', (req, res) => {
   res.json({ courses });
 });
 
+// GET /api/courses/mine - Cursos del estudiante autenticado (protegido)
+router.get('/my/enrolled', authenticateToken, (req, res) => {
+  const userId = req.user.id;
+  const myCourses = courses.filter(
+    (c) => c.enrolledStudents && c.enrolledStudents.includes(userId)
+  );
+  res.json({ courses: myCourses });
+});
+
 // GET /api/courses/:id - Detalle de un curso (publico)
 router.get('/:id', (req, res) => {
   const course = courses.find((c) => c.id === Number(req.params.id));
@@ -60,13 +69,6 @@ router.delete('/:id/enroll', authenticateToken, (req, res) => {
   res.json({ message: 'Inscripción cancelada', course });
 });
 
-// GET /api/courses/mine - Cursos del estudiante autenticado (protegido)
-router.get('/my/enrolled', authenticateToken, (req, res) => {
-  const userId = req.user.id;
-  const myCourses = courses.filter(
-    (c) => c.enrolledStudents && c.enrolledStudents.includes(userId)
-  );
-  res.json({ courses: myCourses });
-});
+
 
 export default router;

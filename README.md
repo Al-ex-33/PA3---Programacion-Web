@@ -1,217 +1,320 @@
-# Gestión de Cursos e Inscripciones - Experiencia Integrada
+# 📚 Gestión de Cursos e Inscripciones - Experiencia Integrada (PA4)
 
-Solución compuesta por un **Portal del Estudiante en React** con autenticación JWT, una **API REST en Express** y un **módulo público en Next.js** con SSG.
+## 📖 Descripción del proyecto
 
-## 📋 Descripción
+Este proyecto corresponde a la **Práctica de Aprendizaje 4 (PA4)** del curso **Programación Web Avanzada** del Instituto San Ignacio de Loyola (ISIL).
 
-El sistema permite a los estudiantes:
+La solución implementa un sistema denominado **"Gestión de Cursos e Inscripciones - Experiencia Integrada"**, compuesto por un **Portal del Estudiante desarrollado en React**, una **API REST construida con Express.js**, autenticación mediante **JSON Web Token (JWT)** y un **módulo público desarrollado con Next.js**.
 
-- 🔐 Iniciar sesión con autenticación JWT
-- 🔍 Explorar el catálogo completo de cursos (desde API REST)
-- 📖 Ver detalles de cada curso con información de cupos
-- ✅ Inscribirse y cancelar inscripción a cursos (vía API)
-- 📊 Visualizar el total de créditos acumulados
-- 🌐 Módulo público en Next.js con catálogo accesible sin autenticación
-- 🔎 Filtrar por categoría, nivel y búsqueda textual
+El sistema permite a los estudiantes autenticarse, consultar la oferta académica, visualizar el detalle de los cursos, gestionar sus inscripciones y mantener una sesión segura mediante tokens de autenticación.
 
-## 🛠️ Tecnologías Utilizadas
+---
 
-| Capa | Tecnología |
-|------|-----------|
-| **Frontend (Portal)** | React 19 + Vite + React Router DOM 7 |
-| **Backend API** | Node.js + Express + JWT + bcryptjs |
-| **Módulo Público** | Next.js 14 (SSG/ISR + rutas dinámicas) |
-| **HTTP Client** | Axios con interceptores |
-| **Estado Global** | Context API (AuthContext + CourseContext) |
-| **Estilos** | CSS3 con variables, dark mode, responsive |
-| **Autenticación** | JWT almacenado en localStorage con interceptores |
+# 🎯 Objetivos
 
-## 📁 Estructura del Proyecto
+* Implementar una aplicación React conectada a una API REST.
+* Gestionar autenticación utilizando JWT.
+* Proteger rutas privadas mediante manejo de sesión.
+* Desarrollar un módulo público utilizando Next.js.
+* Preparar la aplicación para un entorno de producción.
+* Documentar el proyecto siguiendo buenas prácticas de desarrollo.
 
-```
-├── backend/                # API REST con Express + JWT
-│   ├── server.js           # Servidor principal
+---
+
+# 🛠 Tecnologías utilizadas
+
+## Frontend
+
+* React
+* Vite
+* React Router DOM
+* Axios
+* CSS
+
+## Backend
+
+* Node.js
+* Express.js
+* JSON Web Token (JWT)
+
+## Módulo Público
+
+* Next.js
+
+## Control de versiones
+
+* Git
+* GitHub
+
+---
+
+# 🏗 Arquitectura del proyecto
+
+```text
+PA4---Programacion-Web
+│
+├── backend/
 │   ├── routes/
-│   │   ├── auth.js         # POST /login, GET /me
-│   │   └── courses.js      # CRUD cursos + enroll
 │   ├── middleware/
-│   │   └── auth.js         # Middleware JWT
 │   ├── data/
-│   │   ├── courses.js      # Datos de cursos (8)
-│   │   └── users.js        # Usuarios mock
-│   ├── .env.example
-│   └── package.json
-├── src/                    # React - Portal del Estudiante
-│   ├── components/         # Button, Navbar, Footer, CourseCard, CourseList
-│   ├── pages/              # Home, Login, Courses, CourseDetail, MyCourses, NotFound
-│   ├── routes/             # AppRoutes + ProtectedRoute
-│   ├── context/            # AuthContext + CourseContext
-│   ├── services/
-│   │   └── api.js          # Axios config + JWT interceptors
-│   ├── App.jsx             # AuthProvider + CourseProvider
-│   ├── main.jsx            # BrowserRouter entry
-│   └── index.css           # Estilos globales
-├── public-site/            # Next.js - Módulo público
+│   └── server.js
+│
+├── public-site/
+│   ├── app/
+│   ├── components/
+│   └── public/
+│
+├── src/
+│   ├── components/
+│   ├── context/
 │   ├── pages/
-│   │   ├── index.jsx       # Inicio público (SSG + ISR)
-│   │   ├── courses/[id].jsx # Detalle dinámico (SSG + ISR)
-│   │   └── _app.jsx
-│   ├── styles/globals.css
-│   ├── next.config.js
-│   ├── .env.example
-│   └── package.json
-├── .env.example            # Variables de entorno (frontend)
-├── README.md
-└── package.json
+│   ├── services/
+│   └── router/
+│
+└── README.md
 ```
 
-## 🚀 Instalación y Ejecución
+---
 
-### Requisitos previos
+# ✨ Funcionalidades implementadas
 
-- Node.js 18 o superior
-- npm 9 o superior
+### Portal del Estudiante (React)
 
-### 1. Clonar e instalar dependencias
+* Inicio de sesión.
+* Consumo de datos desde la API REST.
+* Listado de cursos disponibles.
+* Visualización del detalle de cada curso.
+* Inscripción y cancelación de inscripción.
+* Visualización de cursos inscritos.
+* Protección de rutas privadas.
+* Cierre de sesión.
+
+---
+
+### Backend (Express)
+
+* API REST.
+* Autenticación mediante JWT.
+* Validación de usuarios.
+* Endpoints protegidos.
+* Gestión de cursos.
+* Gestión de inscripciones.
+
+---
+
+### Módulo Público (Next.js)
+
+* Página principal.
+* Catálogo de cursos.
+* Ruta dinámica para visualizar el detalle de cada curso.
+* Navegación pública para visitantes.
+
+---
+
+# 🔐 Manejo de autenticación
+
+La autenticación se realiza utilizando **JSON Web Token (JWT)**.
+
+Después de iniciar sesión correctamente:
+
+* El servidor genera un token.
+* El token es almacenado en el cliente.
+* Las rutas protegidas verifican la autenticidad del token.
+* El usuario puede cerrar sesión eliminando el token almacenado.
+
+---
+
+# 🌐 Consumo de API
+
+La aplicación React consume la API REST utilizando Axios.
+
+Entre los principales endpoints utilizados se encuentran:
+
+* Inicio de sesión.
+* Obtención de cursos.
+* Consulta del detalle de un curso.
+* Consulta de cursos inscritos.
+* Inscripción en un curso.
+* Cancelación de inscripción.
+
+---
+
+# 🌍 Módulo público con Next.js
+
+El proyecto incorpora un módulo desarrollado con **Next.js**, el cual permite que visitantes no autenticados puedan consultar información pública sobre la oferta académica.
+
+Se implementan:
+
+* Página principal.
+* Catálogo de cursos.
+* Ruta dinámica para visualizar información individual de cada curso.
+
+---
+
+# 🏭 Preparación para producción
+
+El proyecto fue preparado para un entorno de producción mediante:
+
+* Variables de entorno.
+* Scripts de construcción (build).
+* Organización modular del código.
+* Separación entre frontend, backend y módulo público.
+* Configuración para despliegue.
+
+El proyecto genera correctamente los builds de React y Next.js sin errores críticos.
+
+---
+
+# ⚙ Requisitos
+
+* Node.js 20 o superior
+* npm
+* Git
+
+---
+
+# 🚀 Instalación
+
+Clonar el repositorio:
 
 ```bash
-git clone <url-del-repositorio>
-cd PA3---Programacion-Web
+git clone https://github.com/Al-ex-33/PA4---Programacion-Web.git
+```
 
-# Frontend React
+Ingresar al proyecto:
+
+```bash
+cd PA4---Programacion-Web
+```
+
+Instalar dependencias del proyecto principal:
+
+```bash
 npm install
-
-# Backend API
-cd backend && npm install && cd ..
-
-# Módulo público Next.js
-cd public-site && npm install && cd ..
 ```
 
-### 2. Configurar variables de entorno
+Instalar dependencias del backend:
 
 ```bash
-# Frontend (.env)
-cp .env.example .env
-# Editar VITE_API_URL si es necesario (default: http://localhost:4000/api)
-
-# Backend
-cp backend/.env.example backend/.env
-# JWT_SECRET, JWT_EXPIRES_IN, FRONTEND_URL, NEXTJS_URL
-
-# Next.js
-cp public-site/.env.example public-site/.env
-# API_URL
+cd backend
+npm install
 ```
 
-### 3. Ejecutar en desarrollo
+Instalar dependencias del módulo público:
 
 ```bash
-# Terminal 1: Backend API (puerto 4000)
-cd backend && npm run dev
+cd ../public-site
+npm install
+```
 
-# Terminal 2: Frontend React (puerto 5173)
+---
+
+# ▶ Ejecución
+
+## React
+
+```bash
 npm run dev
-
-# Terminal 3: Módulo público Next.js (puerto 3000)
-cd public-site && npm run dev
 ```
 
-### 4. Build de producción
+---
+
+## Backend
 
 ```bash
-# Backend
-cd backend && npm start
-
-# Frontend React
-npm run build
-
-# Next.js
-cd public-site && npm run build
+cd backend
+npm run dev
 ```
 
-## 🔄 Flujo de Navegación
+---
 
-### Portal del Estudiante (React - requiere login)
+## Next.js
 
-1. **Login** (`/login`) - Inicio de sesión con JWT. Credenciales demo: `estudiante@isil.pe` / `123456`
-2. **Inicio** (`/`) - Bienvenida con resumen de selección
-3. **Catálogo** (`/courses`) - Cursos desde API con filtros y búsqueda
-4. **Detalle** (`/course/:id`) - Información completa + inscripción
-5. **Mis Cursos** (`/mycourses`) - Ruta protegida, cursos inscritos
-6. **Cerrar Sesión** - Botón "Salir" que elimina token y redirige
+```bash
+cd public-site
+npm run dev
+```
 
-### Módulo Público (Next.js - sin autenticación)
+---
 
-1. **Inicio** (`/`) - Catálogo público con SSG (regeneración cada 60s)
-2. **Detalle** (`/courses/[id]`) - Página dinámica pre-renderizada con SSG
+# 🌐 Variables de entorno
 
-## 🔐 Autenticación y Seguridad
+## Frontend
 
-- **Flujo**: POST `/api/auth/login` → recibe JWT → almacenado en `localStorage`
-- **Interceptores**: Axios agrega `Authorization: Bearer <token>` automáticamente
-- **Token expirado**: Interceptor detecta 401/403, limpia storage y redirige a `/login`
-- **Rutas protegidas**: `<ProtectedRoute>` redirige a `/login` si no hay sesión
-- **Cierre de sesión**: Elimina token y usuario de localStorage, actualiza estado global
+Archivo:
 
-## 🧠 Manejo de Estado
+```text
+.env
+```
 
-| Contexto | Responsabilidad |
-|----------|----------------|
-| **AuthContext** | Usuario, token, login(), logout(), isAuthenticated, loading, error |
-| **CourseContext** | Cursos (desde API), enrolledIds, addCourse(), removeCourse(), isEnrolled(), totalCredits |
+Contenido:
 
-Ambos usan Context API + hooks personalizados (`useAuth`, `useCourses`).
+```env
+VITE_API_URL=http://localhost:4000/api
+```
 
-## 🌐 Variables de Entorno
+---
 
-| Variable | Descripción | Default |
-|----------|-------------|---------|
-| `VITE_API_URL` | URL de la API REST | `http://localhost:4000/api` |
-| `PORT` | Puerto del backend | `4000` |
-| `JWT_SECRET` | Clave secreta para firmar tokens | (requerido) |
-| `JWT_EXPIRES_IN` | Duración del token | `2h` |
-| `FRONTEND_URL` | URL del frontend React (CORS) | `http://localhost:5173` |
-| `NEXTJS_URL` | URL del módulo Next.js (CORS) | `http://localhost:3000` |
-| `API_URL` | URL de API (usado por Next.js) | `http://localhost:4000/api` |
+## Backend
 
-## 📡 Endpoints de la API
+Archivo:
 
-| Método | Ruta | Auth | Descripción |
-|--------|------|------|-------------|
-| POST | `/api/auth/login` | No | Iniciar sesión, retorna JWT |
-| GET | `/api/auth/me` | JWT | Datos del usuario autenticado |
-| GET | `/api/courses` | No | Listar todos los cursos |
-| GET | `/api/courses/:id` | No | Detalle de un curso |
-| POST | `/api/courses/:id/enroll` | JWT | Inscribirse a un curso |
-| DELETE | `/api/courses/:id/enroll` | JWT | Cancelar inscripción |
-| GET | `/api/courses/my/enrolled` | JWT | Cursos del estudiante |
-| GET | `/api/health` | No | Health check |
+```text
+backend/.env
+```
 
-## 👥 Integrantes
+Variables:
 
-| Integrante                    | Rol / Aporte        |
-| ----------------------------- | ------------------- |
-| Mario Yonatan Haro Agreda     | Desarrollo frontend |
-| Karlo Andre Vergara Caballero | Desarrollo frontend |
-| Alexis Chagua Cueva           | Desarrollo backend  |
-| Erick Borda Roman             | Desarrollo frontend |
-| Christopher Lenin Cano Romero | Desarrollo backend  |
+```env
+PORT=4000
+JWT_SECRET=********
+JWT_EXPIRES_IN=2h
+FRONTEND_URL=http://localhost:5173
+NEXTJS_URL=http://localhost:3000
+```
 
-## 📸 Capturas de Pantalla
+---
 
-**/home**!
-![/home](./src/assets/screenshots/screencapture-localhost-5173-2026-06-09-11_05_42.png "/home")
+# 📸 Evidencias
 
-**/courses**
-![/courses](./src/assets/screenshots/screencapture-localhost-5173-courses-2026-06-09-11_06_24.png "/courses")
+Agregar capturas del funcionamiento de:
 
-**/courses/id**
-![/courses/id](./src/assets/screenshots/screencapture-localhost-5173-course-9-2026-06-09-11_06_58-1.png "/courses/id")
+* Inicio de sesión.
+* Catálogo de cursos.
+* Detalle de curso.
+* Mis cursos.
+* Módulo público en Next.js.
+* Build de React.
+* Build de Next.js.
 
-**/mycourses**
-![/mycourses](./src/assets/screenshots/screencapture-localhost-5173-mycourses-2026-06-09-11_12_57.png "/mycourses")
+---
 
-## 📹 Link de Exposición en YouTube
+# 👥 Integrantes
 
-[https://youtu.be/qqcUu4xESuk](https://youtu.be/qqcUu4xESuk "link")
+* Mario Yonatan Haro Agreda
+* Karlo Andre Vergara Caballero
+* Alexis Chagua Cueva
+* Erick Borda Roman
+* Christopher Lenin Cano Romero
+
+---
+
+# 🎥 Video de sustentación
+
+**Enlace del video de YouTube:**
+
+> Pendiente de agregar una vez finalizada la grabación del equipo.
+
+---
+
+# 🔗 Repositorio
+
+https://github.com/Al-ex-33/PA4---Programacion-Web
+
+---
+
+# 📌 Conclusiones
+
+Durante el desarrollo de este proyecto se integraron los conocimientos adquiridos en el curso de Programación Web II, aplicando el consumo de APIs REST, autenticación mediante JWT, protección de rutas, desarrollo de interfaces con React, construcción de un módulo público con Next.js y preparación del sistema para un entorno de producción.
+
+El resultado obtenido es una solución funcional, organizada y documentada, siguiendo buenas prácticas de desarrollo web moderno.
