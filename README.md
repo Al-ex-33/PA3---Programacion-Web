@@ -277,15 +277,26 @@ NEXTJS_URL=http://localhost:3000
 
 # 📸 Evidencias
 
-Agregar capturas del funcionamiento de:
+### Página de inicio - Portal del Estudiante
+![Inicio](./docs/evidencias/01-home.png)
 
-* Inicio de sesión.
-* Catálogo de cursos.
-* Detalle de curso.
-* Mis cursos.
-* Módulo público en Next.js.
-* Build de React.
-* Build de Next.js.
+### Página de inicio - Resumen de actividad
+![Resumen de actividad](./docs/evidencias/02-home-resumen.png)
+
+### Catálogo de cursos
+![Catálogo de cursos](./docs/evidencias/03-catalogo-cursos.png)
+
+### Detalle de curso
+![Detalle de curso](./docs/evidencias/04-detalle-curso.png)
+
+### Mis cursos - Curso agregado a selección
+![Mis cursos](./docs/evidencias/05-curso-agregado.png)
+
+### Servidor de desarrollo React (Vite) corriendo
+![Vite corriendo](./docs/evidencias/06-vite-corriendo.png)
+
+### Backend Express corriendo
+![Backend corriendo](./docs/evidencias/07-backend-corriendo.png)
 
 ---
 
