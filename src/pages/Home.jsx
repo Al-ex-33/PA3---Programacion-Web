@@ -2,10 +2,9 @@ import { Link } from "react-router-dom";
 import { useCourses } from "../context/CourseContext";
 import Button from "../components/Button";
 import './Home.css';
-import courses from "../data/courses";
 
 function Home() {
-  const { enrolledIds, totalCredits } = useCourses();
+  const { enrolledIds, totalCredits, courses } = useCourses();
 
   return (
     <div className="page page-home">
