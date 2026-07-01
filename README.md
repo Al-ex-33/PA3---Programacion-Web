@@ -302,11 +302,15 @@ NEXTJS_URL=http://localhost:3000
 
 # 👥 Integrantes
 
-* Mario Yonatan Haro Agreda
-* Karlo Andre Vergara Caballero
-* Alexis Chagua Cueva
-* Erick Borda Roman
-* Christopher Lenin Cano Romero
+
+| Integrante                    | Participación |
+| ----------------------------- | :-----------: |
+| Mario Yonatan Haro Agreda     |      100%     |
+| Karlo Andre Vergara Caballero |      100%     |
+| Alexis Chagua Cueva           |      100%     |
+| Erick Borda Roman             |      100%     |
+| Christopher Lenin Cano Romero |      100%     |
+
 
 ---
 
