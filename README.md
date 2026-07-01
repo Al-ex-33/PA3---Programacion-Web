@@ -314,7 +314,7 @@ NEXTJS_URL=http://localhost:3000
 
 **Enlace del video de YouTube:**
 
-> Pendiente de agregar una vez finalizada la grabación del equipo.
+> https://youtu.be/H2hQYECBTEc
 
 ---
 
